@@ -1,2 +1,4 @@
 models/index.js
+public/styles/styles.css
 node_modules
+routes/
