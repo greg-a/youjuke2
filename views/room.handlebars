@@ -1,0 +1,222 @@
+<header id="masthead">
+
+    <div class="row header-row">
+        <div id="logo-tagline" class="col-md-3">
+
+            <img src="/styles/youjuke_logo_0.png" id="logo-img">
+            <p id="slogan">Sick of algorithms telling you what to listen to?</p>
+        </div>
+
+        <div id="current-track-wrapper" class="col-md-6">
+            <div id="play-track-container">
+                <button type="button" class="btn" id="start-listening"><i
+                        class="large material-icons play-pause">play_circle_outline</i></button>
+                <div id="current-track-box"></div>
+
+            </div>
+
+        </div>
+
+        <div id="header-menu-buttons" class="col-md-3">
+
+            <div id="volume-sign-in">
+                <input id="volume" type="range" min="0" max="100" step="1" value="90"></input>
+                <button type="button" class="btn btn-secondary" id="sign-in-button" data-toggle="modal"
+                    data-target="#sign-in" data-whatever="@mdo">Sign in</button>
+            </div>
+
+            <div id="user-info">
+                <div id="welcome-container"></div>
+            </div>
+
+        </div>
+
+
+
+
+
+</header>
+
+
+
+<div class="container main-container">
+
+    <div class="row main-row">
+
+        <div class="col-lg-5 col-md-5" id="left-panel">
+
+            <ul class="nav nav-tabs" id="myTabLeft" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="queue-tab" data-toggle="tab" href="#queue" role="tab"
+                        aria-controls="queue" aria-selected="true"><i class="material-icons">playlist_play</i></a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" id="chat-tab" data-toggle="tab" href="#chat" role="tab" aria-controls="chat"
+                        aria-selected="false"><i class="material-icons">forum</i></a>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="myTabContentLeft">
+                <div class="tab-pane fade show active" id="queue" role="tabpanel" aria-labelledby="queue-tab">
+                    <div class="wrapper queued-track-wrapper">
+
+                        <div id="left-panel-title">
+                        </div>
+                        <div class="queued-track-container"></div>
+                    </div>
+
+                </div>
+                <div class="tab-pane fade" id="chat" role="tabpanel" aria-labelledby="chat-tab">
+                    <div class="chat-container"></div>
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+        <div class="col-lg-7 col-md-7" id="right-panel">
+
+            <ul class="nav nav-tabs" id="myTabRight" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="search-tab" data-toggle="tab" href="#search" role="tab"
+                        aria-controls="search" aria-selected="true"><i class="material-icons">search</i></a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" id="lyr-tab" data-toggle="tab" href="#lyr" role="tab" aria-controls="lyr"
+                        aria-selected="false"><i class="material-icons">font_download</i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="graph-tab" data-toggle="tab" href="#graph" role="tab" aria-controls="graph"
+                        aria-selected="false"><i class="material-icons">bubble_chart</i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="fav-tab" data-toggle="tab" href="#fav" role="tab" aria-controls="fav"
+                        aria-selected="false"><i class="material-icons">grade</i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="rankings-tab" data-toggle="tab" href="#rankings" role="tab"
+                        aria-controls="rankings" aria-selected="false"><i class="material-icons">show_chart</i></a>
+
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="info-tab" data-toggle="tab" href="#info" role="tab" aria-controls="info"
+                        aria-selected="false"><i class="material-icons">info</i></a>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="myTabContentRight">
+
+                <div class="tab-pane fade show active" id="search" role="tabpanel" aria-labelledby="search-tab">
+
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="search-input"
+                            placeholder="enter track title or artist..." aria-label="Deezer search"
+                            aria-describedby="basic-addon2">
+                        <div id="clear-search">&times;</div>
+                    </div>
+
+                    <div class="results-and-lyrics">
+                        <div class="search-results-container">
+                        </div>
+
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="lyr" role="tabpanel" aria-labelledby="lyr-tab">
+                    <div class="music-lyrics-container">
+                    </div>
+                </div>
+                <div class="tab-pane fade chart-container" id="graph" role="tabpanel" aria-labelledby="graph-tab">
+                    <div class="canvas-container"><canvas id="myChart" width="200" height="200"></canvas></div>
+                </div>
+
+                <div class="tab-pane fade chart-container" id="fav" role="tabpanel" aria-labelledby="fav-tab">
+                    <div class="favs-container">
+                        <div id="favs-list"></div>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade chart-container" id="rankings" role="tabpanel" aria-labelledby="rankings-tab">
+                    <div class="rankings-container">
+                        <div id="rankings-list"></div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="info" role="tabpanel" aria-labelledby="info-tab">
+                    <div class="about-app">
+
+                        <h3>What is Youjuke?</h3>
+
+                        <p>Youjuke is a music forum that allows groups of visitors to compile
+                            a shared playlist and listen to it together, live. Anyone can add a track
+                            to the playlist, but it is up to all users as a whole to decide the order of the
+                            playlist. Whether you want to share tracks with a larger audience,
+                            or want to break out into a virtual party with friends, Youjuke has you covered.</p>
+
+                        <p>Want to know which music the audience likes? Youjuke keeps track of the user
+                            music preferences and favorite tracks. Want to have a virtual karaoke party
+                            while video chatting with friends? Just select the lyrics tab and sing away.
+                        </p>
+
+                        <p>Let you be the algorithm to your listening party.</p>
+
+                        <h3>How do I use Youjuke?</h3>
+
+                        <ul>
+                            <li>In this demo version of Youjuke, some tracks may already be in the playlist.</li>
+                            <li>If there are already tracks queued up in the player or playlist, click on the play
+                                button to start the music. If there are
+                                no songs in the playlist, search for a song and click on it to add to the playlist.</li>
+                            <li>Want to hear that song you just added more than any of
+                                the others already in the playlist? Give that song a thumbs up to vote up its position.
+                                If that song has more
+                                has more thumbs-ups than the other tracks, it will come on after the current song. </li>
+                            <li>Hate a song in the playlist? Give that song a thumbs down. The most down-voted songs
+                                will appear
+                                at the bottom of the playlist after the current song ends.</li>
+                            <li>In this demo version, you have unlimited voting, but users will have
+                                limited votes per amount of songs that are added to the playlist.</li>
+                            <li>Want to sing along to the current song? The tab next to the search tab shows lyrics of
+                                the
+                                current song.
+                            </li>
+                            <li>There are graph tabs that show charts of music preferences of users and lists of
+                                favorite tracks of both you and other users.</li>
+                        </ul>
+
+
+                        <h3>More information</h3>
+
+                        <p>Due to licensing, this version of Youjuke currently only plays previews and not complete
+                            songs. Full lyrics may also not be available for songs.
+                        </p>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<div class="modal fade" id="add-song-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Song Added!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
