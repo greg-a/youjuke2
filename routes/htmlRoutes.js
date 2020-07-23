@@ -21,8 +21,14 @@ module.exports = function(app) {
   });
 
   // Page for room showing playlist
-  app.get("/room", function(req, res) {
-    res.render("room");
+  app.get("/room/:id", function(req, res) {
+    db.room.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
+      // console.log(dbExample);
+      res.render("room", {
+        room: dbExample.dataValues.name
+      });
+    });
+
   });
 
   // Render 404 page for any unmatched routes
