@@ -20,7 +20,7 @@ module.exports = function(app) {
     });
   });
 
-  // Page for room showing playlist
+  // Load page for room showing playlist
   app.get("/room/:id", function(req, res) {
     db.room.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
       // console.log(dbExample);
@@ -28,6 +28,8 @@ module.exports = function(app) {
         room: dbExample.dataValues.name
       });
     });
+
+    //db.songs.findAll({ where: { roomid: req.params.id}}).then(function(dbExample) )
 
   });
 
