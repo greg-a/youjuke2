@@ -1,4 +1,5 @@
 var db = require("../models");
+var passport = require("../config/passport")
 
 module.exports = function(app) {
   // Get all examples
@@ -8,11 +9,17 @@ module.exports = function(app) {
     });
   });
 
-  // Create a new example
-  app.post("/api/examples", function(req, res) {
-    db.Example.create(req.body).then(function(dbExample) {
-      res.json(dbExample);
-    });
+  // Create a new user
+  app.post("/api/signup", function(req, res) {
+    db.User.create({
+      email: req.body.email,
+      password: req.body.password
+    }).then(function() {
+      res.redirect(307, "/api/login");
+    }).catch(function(err){
+      res.status(401).json(err);
+      console.log(err)
+    })
   });
 
   // Delete an example by id

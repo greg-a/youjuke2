@@ -3,9 +3,9 @@ var db = require("../models");
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
+    db.User.findAll({}).then(function(dbExamples) {
       res.render("index", {
-        msg: "Welcome!",
+        msg: "Welcome",
         examples: dbExamples
       });
     });
@@ -20,8 +20,18 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/room/:id", function(req, res) {
+    db.room.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
+      console.log(dbExample)
+      res.render("room", {
+        room: dbExample
+      });
+    });
+  });
+
   // Page for room showing playlist
   app.get("/room", function(req, res) {
+    db.room.findOne
     res.render("room");
   });
 

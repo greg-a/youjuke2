@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "Abc123!.",
+    "password": "thisisatest",
     "database": "youjuke_db",
     "host": "localhost",
     "dialect": "mysql"
