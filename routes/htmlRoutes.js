@@ -20,6 +20,11 @@ module.exports = function(app) {
     });
   });
 
+  // Page for room showing playlist
+  app.get("/room", function(req, res) {
+    res.render("room");
+  })
+
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");
