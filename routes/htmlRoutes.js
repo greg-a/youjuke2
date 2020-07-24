@@ -3,10 +3,11 @@ var db = require("../models");
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    db.User.findAll({}).then(function(dbExamples) {
+    db.room.findAll({}).then(function(dbExamples) {
+      console.log(dbExamples[0].dataValues.name)
       res.render("index", {
-        msg: "Welcome",
-        examples: dbExamples
+        rooms: dbExamples,
+        room: "/room/" + dbExamples
       });
     });
   });

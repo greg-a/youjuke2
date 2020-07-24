@@ -37,8 +37,12 @@ $(document).ready(function(){
   }
 
   function handleLoginErr(err) {
-    $("#alert .msg").text(err.responseJSON);
+    var errType = err.responseJSON.original.errno;
+    if (errType === 1062) {
+    $("#alert .msg").text("Email already exists. Please log in.");
     $("#alert").fadeIn(500);
+    }
+    console.log(err.responseJSON.original.errno)
   }
 });
 
