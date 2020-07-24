@@ -21,19 +21,17 @@ module.exports = function(app) {
     });
   });
 
+  // Load page for room showing playlist
   app.get("/room/:id", function(req, res) {
     db.room.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
-      console.log(dbExample)
+      // console.log(dbExample);
       res.render("room", {
-        room: dbExample
+        room: dbExample.dataValues.name
       });
     });
-  });
 
-  // Page for room showing playlist
-  app.get("/room", function(req, res) {
-    db.room.findOne
-    res.render("room");
+    //db.songs.findAll({ where: { roomid: req.params.id}}).then(function(dbExample) )
+
   });
 
   // Render 404 page for any unmatched routes
