@@ -22,14 +22,20 @@ module.exports = function (app) {
     });
   });
 
+  app.get("/api/songs", function (req, res) {
+    db.song.findAll({}).then(function (results) {//consider changing this variable to Song
+      res.json(results);
+    });
+  });
+
   app.post("/api/songs", function (req, res) {
     console.log("New Song:");
     console.log(req.body);
-    db.Song.create({
+    db.song.create({//consider changing this variable to Song instead of song
       deezerID: req.body.deezerID,
       artistName: req.body.artistName,
       songName: req.body.songName,
-      songURL: req.body.SongURL,
+      songURL: req.body.songURL,
       thumbnail: req.body.thumbnail,
       upvote: 0
     }).then(function (results) {
