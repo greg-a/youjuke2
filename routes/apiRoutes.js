@@ -48,9 +48,9 @@ module.exports = function (app) {
     });
   });
 
-  app.get("/api/songs", function (req, res) {
-    db.song.findAll({}).then(function (results) {//consider changing this variable to Song
-      res.json(results);
+  app.get("/api/songs/?:roomId", function (req, res) {
+    db.song.findAll({ where : { roomId: req.params.roomId }, order: [["upvote", "DESC"], ["id", "ASC"]]}).then(function (songs) {//consider changing this variable to Song
+      res.json(songs);
     });
   });
 
