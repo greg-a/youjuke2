@@ -1,37 +1,89 @@
-<div id="home">
-  <div class="container">
-    <div class="row">
-      <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>This is our Home Page!</h2>
-        <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <label for="example-text">Example Text</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
-          </div>
-          <div class="form-group">
-            <label for="example-description">Example Description</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
-          </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
-        </form>
-        <h3>Examples:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each examples}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul>
-      </div>
-    </div>
-  </div>
+<div class="mn-container d-flex justify-content-center">
+  <div class="col-lg-8 col-md-8" id="left-panel">
 
-  <div class="container">
-    <a href="room" id="room-button" class="btn btn-primary">Enter Room</button>
+    <ul class="nav nav-tabs" id="myTabLeft" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="queue-tab" data-toggle="tab" href="#queue" role="tab" aria-controls="queue"
+          aria-selected="true"><i class="material-icons">Choose Listening Room</i></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" id="chat-tab" data-toggle="tab" href="#chat" role="tab" aria-controls="chat"
+          aria-selected="false"><i class="material-icons">Create Listening Room</i></a>
+      </li>
+    </ul>
+
+    <div class="tab-content" id="myTabContentLeft">
+      <div class="tab-pane fade show active" id="queue" role="tabpanel" aria-labelledby="queue-tab">
+        <div class="wrapper queued-track-wrapper">
+
+          <div id="left-panel-title">
+          </div>
+          <div class="queued-track-container">
+            {{#each rooms}}
+            <a href="/room/{{this.dataValues.id}}">
+              {{this.dataValues.name}}
+            </a>
+            <br>
+            {{/each}}
+          </div>
+        </div>
+
+      </div>
+      <div class="tab-pane fade" id="chat" role="tabpanel" aria-labelledby="chat-tab">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Room Name</span>
+          </div>
+          <input type="text" class="form-control" aria-label="new-room"
+            aria-describedby="basic-addon1" id="new-room">
+        </div>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Describe the Room</span>
+          </div>
+          <textarea class="form-control" aria-label="With textarea" id="room-desc"></textarea>
+        </div>
+        <button type="button" class="btn btn-primary" id="submit-room">Submit</button>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<div class="modal" tabindex="100" role="dialog" id="myModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Sign Up Form</h5>
+      </div>
+      <form action="" class="signup">
+        <div class="modal-body">
+          <div class="form-group">
+            <input type="email" class="form-control" id="email-input" placeholder="Email">
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" id="password-input" placeholder="Password">
+          </div>
+          <div style="display: none" id="alert" class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span> <span class="msg"></span>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Sign In</button>
+            <button type="button" class="btn btn-secondary">Stranger Mode</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+          <p>Or log in <a href="/login">here</a></p>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+  integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
