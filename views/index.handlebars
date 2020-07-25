@@ -21,16 +21,30 @@
           </div>
           <div class="queued-track-container">
             {{#each rooms}}
-            <a href="/room">
+            <a href="/room/{{this.dataValues.id}}">
               {{this.dataValues.name}}
             </a>
+            <br>
             {{/each}}
           </div>
         </div>
 
       </div>
       <div class="tab-pane fade" id="chat" role="tabpanel" aria-labelledby="chat-tab">
-        <div class="chat-container"></div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Room Name</span>
+          </div>
+          <input type="text" class="form-control" aria-label="new-room"
+            aria-describedby="basic-addon1" id="new-room">
+        </div>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Describe the Room</span>
+          </div>
+          <textarea class="form-control" aria-label="With textarea" id="room-desc"></textarea>
+        </div>
+        <button type="button" class="btn btn-primary" id="submit-room">Submit</button>
 
       </div>
 

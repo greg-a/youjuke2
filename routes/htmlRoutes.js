@@ -4,10 +4,8 @@ module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
     db.room.findAll({}).then(function(dbExamples) {
-      console.log(dbExamples[0].dataValues.name)
       res.render("index", {
-        rooms: dbExamples,
-        room: "/room/" + dbExamples
+        rooms: dbExamples
       });
     });
   });

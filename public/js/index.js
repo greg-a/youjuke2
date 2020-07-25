@@ -44,5 +44,23 @@ $(document).ready(function(){
     }
     console.log(err.responseJSON.original.errno)
   }
+
+  $("#submit-room").on("click", function(event) {
+    var newRoom = {
+      name: $("#new-room").val().trim(),
+      description: $("#room-desc").val().trim()
+    };
+
+    $.ajax("/api/room", {
+      type: "POST",
+      data: newRoom
+    }).then(
+      function(res) {
+        console.log("created room", newRoom);
+        // location.reload(res.redirect);
+        window.location.href = res.redirect;
+      }
+    )
+  })
 });
 

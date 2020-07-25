@@ -85,6 +85,7 @@ $(document).on("click", ".search-result", function (event) {
         songName: $(this).attr("data-song"),
         songURL: $(this).attr("data-preview"),
         thumbnail: $(this).attr("data-thumbnail"),
+        roomID: window.location.pathname.substring(6)
         // upvote: 0
     };
 
