@@ -10,7 +10,7 @@
         <div id="current-track-wrapper" class="col-md-6">
             <div id="play-track-container">
                 <button type="button" class="btn" id="start-listening"><i
-                        class="large material-icons play-pause">play_circle_outline</i></button>
+                        class="large material-icons play-pause"></i></button>
                 <div id="current-track-box"></div>
 
             </div>
@@ -48,7 +48,7 @@
             <ul class="nav nav-tabs" id="myTabLeft" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" id="queue-tab" data-toggle="tab" href="#queue" role="tab"
-                        aria-controls="queue" aria-selected="true"><i class="material-icons">playlist_play</i></a>
+                        aria-controls="queue" aria-selected="true"><i class="material-icons">playlist_play {{room}}</i></a>
                 </li>
 
                 <li class="nav-item">
@@ -220,3 +220,8 @@
         </div>
     </div>
 </div>
+
+<audio src="#" id="song"></audio>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/room.js"></script>
