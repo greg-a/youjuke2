@@ -1,13 +1,8 @@
 var db = require("../models");
-var passport = require("../config/passport")
+var passport = require("../config/passport");
+const { sequelize } = require("../models");
 
 module.exports = function (app) {
-  // Get all examples
-  app.get("/api/examples", function (req, res) {
-    db.Example.findAll({}).then(function (dbExamples) {
-      res.json(dbExamples);
-    });
-  });
 
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
@@ -41,22 +36,19 @@ module.exports = function (app) {
     })
   })
 
-  // Delete an example by id
-  app.delete("/api/songs/?:songId", function (req, res) {
-    db.Example.destroy({ where: { id: req.params.songId } }).then(function (song) {
-      res.json(song);
+  app.get("/api/songs/?:roomId", function (req, res) {
+    db.song.findAll({ where : { roomId: req.params.roomId, pending: true}, order: [["upvote", "DESC"], ["id", "ASC"]]}).then(function (songs) {//consider changing this variable to Song
+      res.json(songs);
     });
   });
 
   app.get("/api/songs/?:roomId", function (req, res) {
-    db.song.findAll({ where : { roomId: req.params.roomId }, order: [["upvote", "DESC"], ["id", "ASC"]]}).then(function (songs) {//consider changing this variable to Song
+    db.song.findAll({ where : { roomId: req.params.roomId }, order: [["tempUpvote", "DESC"], ["tempIndex", "ASC"]]}).then(function (songs) {//consider changing this variable to Song
       res.json(songs);
     });
   });
 
   app.post("/api/songs", function (req, res) {
-    console.log("New Song:");
-    console.log(req.body);
     db.song.create({//consider changing this variable to Song instead of song
       deezerID: req.body.deezerID,
       artistName: req.body.artistName,
@@ -67,7 +59,23 @@ module.exports = function (app) {
       upvote: 0
     }).then(function (results) {
       res.json(results);
-      console.log(results)
     });
   });
+
+  app.put("/api/songs/ended/?:songId", function (req, res) {
+    console.log("updating song: " + req.params.songId)
+    db.song.update({played: sequelize.literal("played + 1"), pending: false},
+    {
+      where: {id: req.params.songId}
+    })
+  })
+
+  app.put("/api/songs/added/?:songId", function (req, res) {
+    console.log("added song: " + req.params.songId)
+    db.song.update({pending: true, tempUpvote: 0},
+    {
+      where: {id: req.params.songId}
+    })
+  })
 };
+

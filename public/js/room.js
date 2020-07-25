@@ -96,6 +96,22 @@ $(document).on("click", ".search-result", function (event) {
     // var deezerID = $(this).attr("data-deezer");
     // console.log(deezerID);
 
+    $.get("/api/songs/" + roomID).then(function (songs){
+        var totalSongs = songs;
+
+        for (var i = 0; i < totalSongs.length; i++) {
+            if (totalSongs[i].deezerID === newSong.deezerID) {
+                $.ajax({
+                    method: "PUT",
+                    url: "/api/songs/added/" + totalSongs[i].id
+                })
+                .then(function(song){
+                    console.log("used existing song: " + song)
+                })
+            }
+        }
+    })
+
     $.post("/api/songs/", newSong).then(function (data) {
         console.log(data);
         getPlaylist();
@@ -223,18 +239,26 @@ function playPause() {
 };
 
 $("#song").on("ended", (event) => {
-    
-    // check if there are more songs on the playlist
-    if (playlistArr.length > 0) {
-        playing = true;
-        playPause();
-    }
-    else {
-        playing = true;
-        playPause();
-        $("#start-listening").text("Start Listening");
-    }
 
+    $.ajax({
+        method: "PUT",
+        url: "/api/songs/ended/" + currentSong.id,
+    })
+        .then(function (song) {
+            // getPlaylist();
+            console.log("updating song: " + currentSong.id)
+
+            // check if there are more songs on the playlist
+            if (playlistArr.length > 0) {
+                playing = true;
+                playPause();
+            }
+            else {
+                playing = true;
+                playPause();
+                $("#start-listening").text("Start Listening");
+            }
+        })
 });
 
 getPlaylist();
