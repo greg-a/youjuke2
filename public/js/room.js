@@ -120,7 +120,7 @@ function renderPlaylist() {
     if (currentSong == "") {
         //creates playlist format for each song
         currentSong = playlistArr[0];
-        $("#song").attr("src", playlistArr[0].preview);
+        $("#song").attr("src", currentSong.songURL);
         var queuedTrack = $("<div>").addClass("current-song-container").attr("data-id", playlistArr[0].deezerID);
         var nameContainer = $("<div>").addClass("name-container current-song");
         var artistName = playlistArr[0].artistName;
