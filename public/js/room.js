@@ -99,6 +99,7 @@ $(document).on("click", ".search-result", function (event) {
     $.post("/api/songs/", newSong).then(function (data) {
         console.log(data);
         getPlaylist();
+        // location.reload("/room/2")
     });
 });
 
@@ -121,6 +122,7 @@ function renderPlaylist() {
         //creates playlist format for each song
         currentSong = playlistArr[0];
         $("#song").attr("src", currentSong.songURL);
+        $("#song").attr("data-songid", currentSong.id)
         var queuedTrack = $("<div>").addClass("current-song-container").attr("data-id", playlistArr[0].deezerID);
         var nameContainer = $("<div>").addClass("name-container current-song");
         var artistName = playlistArr[0].artistName;
@@ -199,6 +201,41 @@ function renderPlaylist() {
         }
     }
 }
+
+$("#start-listening").on("click", function () {
+    playPause();
+});
+
+let playing = true;
+// plays or pauses audio based on playing status
+function playPause() {
+    if (playing) {
+        const song = document.querySelector('#song');
+
+        song.play(); //this will play the audio track
+        playing = false;
+        $("#start-listening").html("<i class='large material-icons play-pause'>pause_circle_outline</i>");
+    } else {
+        song.pause();
+        playing = true;
+        $("#start-listening").html("<i class='large material-icons play-pause'>play_circle_outline</i>");
+    }
+};
+
+$("#song").on("ended", (event) => {
+    
+    // check if there are more songs on the playlist
+    if (playlistArr.length > 0) {
+        playing = true;
+        playPause();
+    }
+    else {
+        playing = true;
+        playPause();
+        $("#start-listening").text("Start Listening");
+    }
+
+});
 
 getPlaylist();
 
