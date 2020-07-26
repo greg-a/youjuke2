@@ -95,39 +95,49 @@ $(document).on("click", ".search-result", function (event) {
 
     // var deezerID = $(this).attr("data-deezer");
     // console.log(deezerID);
+    var existingSong = false;
 
-    $.get("/api/songs/" + roomID).then(function (songs){
+    $.get("/api/allsongs/" + roomID).then(function (songs) {
         var totalSongs = songs;
-
         for (var i = 0; i < totalSongs.length; i++) {
-            if (totalSongs[i].deezerID === newSong.deezerID) {
+            if (totalSongs[i].deezerID == newSong.deezerID) {                
+                existingSong = true;
+
                 $.ajax({
                     method: "PUT",
                     url: "/api/songs/added/" + totalSongs[i].id
                 })
-                .then(function(song){
-                    console.log("used existing song: " + song)
-                })
+                    .then(function (song) {
+                        console.log("used existing song: " + song)
+                        getPlaylist();
+                    })
             }
         }
+        if (!existingSong)
+            $.post("/api/songs/", newSong).then(function (song) {
+                getPlaylist();
+                console.log("added new song: " + song)
+        });
     })
-
-    $.post("/api/songs/", newSong).then(function (data) {
-        console.log(data);
-        getPlaylist();
-        // location.reload("/room/2")
-    });
 });
 
 function getPlaylist() {
     $.get("/api/songs/" + roomID).then(function (songs) {
         playlistArr = songs;
         renderPlaylist();
+
+        if (playlistArr.length > 0 && !playing) {
+            playing = true;
+            playPause();
+        }
+        else {
+            playing = false;
+            playPause();
+        }
     })
 }
 
 function renderPlaylist() {
-    console.log(playlistArr)
     // empty current song container
     $(".queued-track-container").empty();
 
@@ -152,12 +162,12 @@ function renderPlaylist() {
 
         var upButton = $("<a>");
         // create upvote button
-        upButton.attr("data-deezer", playlistArr[0].deezerID);
+        upButton.attr("data-id", playlistArr[0].id);
         upButton.addClass("btn btn-flat waves-effect waves-green upvote");
         upButton.html("<i class='material-icons'>thumb_up</i>");
         // create downvote button
         var downButton = $("<a>");
-        downButton.attr("data-deezer", playlistArr[0].deezerID);
+        downButton.attr("data-id", playlistArr[0].id);
         downButton.addClass("btn btn-flat waves-effect waves-red downvote");
         downButton.html("<i class='material-icons'>thumb_down</i>");
         // add upvote to song container
@@ -196,12 +206,12 @@ function renderPlaylist() {
             thumbnailImg.attr("src", thumbnail);
             // create upvote button
             var upButton = $("<a>");
-            upButton.attr("data-deezer", playlistArr[i].deezerID);
+            upButton.attr("data-id", playlistArr[i].id);
             upButton.addClass("btn btn-flat waves-effect waves-green upvote");
             upButton.html("<i class='material-icons'>thumb_up</i>");
             // create downvote button
             var downButton = $("<a>");
-            downButton.attr("data-deezer", playlistArr[i].deezerID);
+            downButton.attr("data-id", playlistArr[i].id);
             downButton.addClass("btn btn-flat waves-effect waves-red downvote");
             downButton.html("<i class='material-icons'>thumb_down</i>");
 
@@ -218,8 +228,21 @@ function renderPlaylist() {
     }
 }
 
-$("#start-listening").on("click", function () {
+$("#start-listening").on("click", function() {
     playPause();
+});
+
+$(document).on("click", ".upvote", function(event) {
+    console.log($(this))
+    $.ajax({
+        method: "PUT",
+        url: "/api/songs/upvote/" + $(this).attr("data-id")
+    })
+    .then(function(data) {
+        console.log("upvote submitted");
+        getPlaylist();
+    }) 
+        
 });
 
 let playing = true;
@@ -239,27 +262,15 @@ function playPause() {
 };
 
 $("#song").on("ended", (event) => {
-
     $.ajax({
         method: "PUT",
         url: "/api/songs/ended/" + currentSong.id,
+    }).then(function (song) {
+        console.log("updating song: " + currentSong.id)
+        currentSong = "";
+        getPlaylist();
     })
-        .then(function (song) {
-            // getPlaylist();
-            console.log("updating song: " + currentSong.id)
-
-            // check if there are more songs on the playlist
-            if (playlistArr.length > 0) {
-                playing = true;
-                playPause();
-            }
-            else {
-                playing = true;
-                playPause();
-                $("#start-listening").text("Start Listening");
-            }
-        })
 });
 
-getPlaylist();
+$(document).ready(getPlaylist());
 

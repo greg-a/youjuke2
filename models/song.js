@@ -29,10 +29,6 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.BOOLEAN,
       defaultValue: true
     },
-    tempIndex: {
-      type: DataTypes.INTEGER,
-      defaultValue: 0
-    },
     tempUpvote: {
       type: DataTypes.INTEGER,
       defaultValue: 0
