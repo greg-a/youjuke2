@@ -24,7 +24,8 @@ module.exports = function(app) {
     db.room.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
       // console.log(dbExample);
       res.render("room", {
-        room: dbExample.dataValues.name
+        room: dbExample.dataValues.name,
+        description: dbExample.dataValues.description
       });
     });
 

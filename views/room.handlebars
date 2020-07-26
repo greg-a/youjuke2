@@ -87,8 +87,8 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" id="lyr-tab" data-toggle="tab" href="#lyr" role="tab" aria-controls="lyr"
-                        aria-selected="false"><i class="material-icons">font_download</i></a>
+                    <a class="nav-link" id="room-info-tab" data-toggle="tab" href="#room-info" role="tab" aria-controls="room-info"
+                        aria-selected="false"><i class="material-icons">place</i></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="graph-tab" data-toggle="tab" href="#graph" role="tab" aria-controls="graph"
@@ -105,7 +105,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="info-tab" data-toggle="tab" href="#info" role="tab" aria-controls="info"
-                        aria-selected="false"><i class="material-icons">info</i> Room: {{room}}</a>
+                        aria-selected="false"><i class="material-icons">help</i></a>
                 </li>
             </ul>
 
@@ -126,8 +126,10 @@
 
                     </div>
                 </div>
-                <div class="tab-pane fade" id="lyr" role="tabpanel" aria-labelledby="lyr-tab">
-                    <div class="music-lyrics-container">
+                <div class="tab-pane fade" id="room-info" role="tabpanel" aria-labelledby="room-info-tab">
+                    <div class="room-description-container">
+                        <h3>{{room}}</h3>
+                        <p>{{description}}</p>
                     </div>
                 </div>
                 <div class="tab-pane fade chart-container" id="graph" role="tabpanel" aria-labelledby="graph-tab">
