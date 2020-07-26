@@ -24,6 +24,10 @@ a {
   padding: 0 5px 0 5px;
 }
 
+.mn-container {
+  margin-top: 10px;
+}
+
 .header-row {
   margin-top: -5px;
   margin-bottom: -5px;
