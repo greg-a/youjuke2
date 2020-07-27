@@ -15,6 +15,10 @@
         <a class="nav-link" id="chat-tab" data-toggle="tab" href="#chat" role="tab" aria-controls="chat"
           aria-selected="false"><i class="material-icons">add</i></a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" id="info-tab" data-toggle="tab" href="#info" role="tab" aria-controls="info"
+          aria-selected="false"><i class="material-icons">help</i></a>
+      </li>
     </ul>
 
     <div class="tab-content" id="myTabContentLeft">
@@ -50,6 +54,59 @@
         <button type="button" class="btn btn-primary" id="submit-room">Submit</button>
 
       </div>
+      <div class="tab-pane fade" id="info" role="tabpanel" aria-labelledby="info-tab">
+        <div class="about-app-index">
+
+          <h3>What is Youjuke?</h3>
+
+          <p>Youjuke is a music forum that allows groups of visitors to compile
+            a shared playlist and listen to it together, live. Anyone can add a track
+            to the playlist, but it is up to all users as a whole to decide the order of the
+            playlist. Whether you want to share tracks with a larger audience,
+            or want to break out into a virtual party with friends, Youjuke has you covered.</p>
+
+          <p>Want to know which music the audience likes? Youjuke keeps track of the user
+            music preferences and favorite tracks. Want to have a virtual karaoke party
+            while video chatting with friends? Just select the lyrics tab and sing away.
+          </p>
+
+          <p>Let you be the algorithm to your listening party.</p>
+
+          <h3>How do I use Youjuke?</h3>
+
+          <ul>
+            <li>In this demo version of Youjuke, some tracks may already be in the playlist.</li>
+            <li>If there are already tracks queued up in the player or playlist, click on the play
+              button to start the music. If there are
+              no songs in the playlist, search for a song and click on it to add to the playlist.</li>
+            <li>Want to hear that song you just added more than any of
+              the others already in the playlist? Give that song a thumbs up to vote up its position.
+              If that song has more
+              has more thumbs-ups than the other tracks, it will come on after the current song. </li>
+            <li>Hate a song in the playlist? Give that song a thumbs down. The most down-voted songs
+              will appear
+              at the bottom of the playlist after the current song ends.</li>
+            <li>In this demo version, you have unlimited voting, but users will have
+              limited votes per amount of songs that are added to the playlist.</li>
+            <li>Want to sing along to the current song? The tab next to the search tab shows lyrics of
+              the
+              current song.
+            </li>
+            <li>There are graph tabs that show charts of music preferences of users and lists of
+              favorite tracks of both you and other users.</li>
+          </ul>
+
+
+          <h3>More information</h3>
+
+          <p>Due to licensing, this version of Youjuke currently only plays previews and not complete
+            songs. Full lyrics may also not be available for songs.
+          </p>
+
+
+        </div>
+      </div>
+
 
     </div>
 
@@ -59,60 +116,29 @@
 <div class="modal" tabindex="100" role="dialog" id="myModal">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <ul class="nav nav-tabs" id="myTabLeft" role="tablist">
-        <li class="nav-item">
-          <a class="nav-link active" id="signup-tap" data-toggle="tab" href="#create-tab" role="tab"
-            aria-controls="create-tab" aria-selected="true">Create Account</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" id="login-tab" data-toggle="tab" href="#login-panel" role="tab" aria-controls="login-tab"
-            aria-selected="false">Log In</a>
-        </li>
-      </ul>
-      <div class="tab-content" id="myTabContentLeft">
-        <div class="tab-pane fade show active" id="create-tab" role="tabpanel" aria-labelledby="signup-tab">
-          <form action="" class="signup">
-            <div class="modal-body">
-              <div class="form-group">
-                <input type="email" class="form-control email-input" id="email-signup" placeholder="Email">
-              </div>
-              <div class="form-group">
-                <input type="password" class="form-control password-input" id="password-signup" placeholder="Password">
-              </div>
-              <div style="display: none" id="alert" class="alert alert-danger" role="alert">
-                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                <span class="sr-only">Error:</span> <span class="msg"></span>
-              </div>
-              <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" id="create-account">Create Account</button>
-                <button type="button" class="btn btn-secondary">Stranger Mode</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </form>
-        </div>
-        <div class="tab-pane fade" id="login-panel" role="tabpanel" aria-labelledby="login-tab">
-          <form action="" class="login">
-            <div class="modal-body">
-              <div class="form-group">
-                <input type="email" class="form-control email-input" id="email-signin" placeholder="Email">
-              </div>
-              <div class="form-group">
-                <input type="password" class="form-control password-input" id="password-signin" placeholder="Password">
-              </div>
-              <div style="display: none" id="alert" class="alert alert-danger" role="alert">
-                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                <span class="sr-only">Error:</span> <span class="msg"></span>
-              </div>
-              <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" id="login-button">Log In</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </form>
-        </div>
+      <div class="modal-header">
+        <h5 class="modal-title">Sign Up Form</h5>
       </div>
+      <form action="" class="signup">
+        <div class="modal-body">
+          <div class="form-group">
+            <input type="email" class="form-control" id="email-input" placeholder="Email">
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" id="password-input" placeholder="Password">
+          </div>
+          <div style="display: none" id="alert" class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span> <span class="msg"></span>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Sign In</button>
+            <button type="button" class="btn btn-secondary">Stranger Mode</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+          <p>Or log in <a href="/login">here</a></p>
+        </div>
+      </form>
     </div>
   </div>
 </div>
