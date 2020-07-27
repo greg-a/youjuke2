@@ -166,6 +166,10 @@ a {
   margin-bottom: 0;
 }
 
+.nav-link {
+  color: rgb(182, 182, 182);
+}
+
 .search-result:hover, .queued-song:hover {
   cursor: pointer;
   /* background-color: rgb(95, 95, 95); */

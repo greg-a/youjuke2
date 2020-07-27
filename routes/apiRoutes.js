@@ -9,6 +9,7 @@ module.exports = function (app) {
   // Otherwise the user will be sent an error
   app.post("/api/login", passport.authenticate("local"), function (req, res) {
     res.json(req.user);
+    console.log(req.user)
   });
 
   // Create a new user
@@ -96,6 +97,21 @@ module.exports = function (app) {
       }).then(function (results) {
         res.json(results);
       });
+  });
+
+  app.get("/api/user_data", function(req, res) {
+    console.log(req)
+    if (!req.user) {
+      // The user is not logged in, send back an empty object
+      res.json({});
+    } else {
+      // Otherwise send back the user's email and id
+      // Sending back a password, even a hashed password, isn't a good idea
+      res.json({
+        email: req.user.email,
+        id: req.user.id
+      });
+    }
   });
 };
 
