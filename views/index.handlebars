@@ -1,10 +1,10 @@
 <div class="mn-container d-flex justify-content-center">
-  
+
   <div class="col-lg-8 col-md-8" id="left-panel">
-<div class="index-page-logo">
-    <img src="/styles/youjuke_logo_0.png" id="logo-img">
-            <p id="slogan">Sick of algorithms telling you what to listen to?</p>
-  </div>
+    <div class="index-page-logo">
+      <img src="/styles/youjuke_logo_0.png" id="logo-img">
+      <p id="slogan">Sick of algorithms telling you what to listen to?</p>
+    </div>
     <ul class="nav nav-tabs" id="myTabLeft" role="tablist">
       <li class="nav-item">
         <a class="nav-link active" id="queue-tab" data-toggle="tab" href="#queue" role="tab" aria-controls="queue"
@@ -39,8 +39,7 @@
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">Room Name</span>
           </div>
-          <input type="text" class="form-control" aria-label="new-room"
-            aria-describedby="basic-addon1" id="new-room">
+          <input type="text" class="form-control" aria-label="new-room" aria-describedby="basic-addon1" id="new-room">
         </div>
         <div class="input-group">
           <div class="input-group-prepend">
@@ -60,29 +59,60 @@
 <div class="modal" tabindex="100" role="dialog" id="myModal">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Sign Up Form</h5>
-      </div>
-      <form action="" class="signup">
-        <div class="modal-body">
-          <div class="form-group">
-            <input type="email" class="form-control" id="email-input" placeholder="Email">
-          </div>
-          <div class="form-group">
-            <input type="password" class="form-control" id="password-input" placeholder="Password">
-          </div>
-          <div style="display: none" id="alert" class="alert alert-danger" role="alert">
-            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-            <span class="sr-only">Error:</span> <span class="msg"></span>
-          </div>
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Sign In</button>
-            <button type="button" class="btn btn-secondary">Stranger Mode</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div>
-          <p>Or log in <a href="/login">here</a></p>
+      <ul class="nav nav-tabs" id="myTabLeft" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="signup-tap" data-toggle="tab" href="#create-tab" role="tab"
+            aria-controls="create-tab" aria-selected="true">Create Account</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" id="login-tab" data-toggle="tab" href="#login-panel" role="tab" aria-controls="login-tab"
+            aria-selected="false">Log In</a>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContentLeft">
+        <div class="tab-pane fade show active" id="create-tab" role="tabpanel" aria-labelledby="signup-tab">
+          <form action="" class="signup">
+            <div class="modal-body">
+              <div class="form-group">
+                <input type="email" class="form-control email-input" id="email-signup" placeholder="Email">
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control password-input" id="password-signup" placeholder="Password">
+              </div>
+              <div style="display: none" id="alert" class="alert alert-danger" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span> <span class="msg"></span>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" id="create-account">Create Account</button>
+                <button type="button" class="btn btn-secondary">Stranger Mode</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </form>
         </div>
-      </form>
+        <div class="tab-pane fade" id="login-panel" role="tabpanel" aria-labelledby="login-tab">
+          <form action="" class="login">
+            <div class="modal-body">
+              <div class="form-group">
+                <input type="email" class="form-control email-input" id="email-signin" placeholder="Email">
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control password-input" id="password-signin" placeholder="Password">
+              </div>
+              <div style="display: none" id="alert" class="alert alert-danger" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span> <span class="msg"></span>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" id="login-button">Log In</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </div>

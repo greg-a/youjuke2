@@ -2,6 +2,14 @@ var roomID = window.location.pathname.substring(6);
 var playlistArr;
 var currentSong = "";
 
+$(document).ready(function() {
+    // This file just does a GET request to figure out which user is logged in
+    // and updates the HTML on the page
+    $.get("/api/user_data").then(function(data) {
+      $("#sign-out-button").text("Welcome " + data.email + " click to sign out");
+    });
+  });
+
 $("#search-input").keyup(function (event) {
     //first remove the results from any previous search
     var searchStatus = $("#search-input").val();
