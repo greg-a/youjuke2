@@ -238,6 +238,11 @@ a:hover {
   overflow: auto;
 }
 
+.about-app-index {
+  height: 25em;
+  overflow: auto;
+}
+
 .queued-song, .ranked-song {
   display: flex;
   min-height: 50px;
