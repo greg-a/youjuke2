@@ -67,6 +67,10 @@ a {
   text-align: center;
 }
 
+.index-button-container {
+  text-align: center;
+}
+
 #current-track-wrapper {
   width: 100%;
   float: left;
