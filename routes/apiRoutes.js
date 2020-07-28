@@ -52,6 +52,12 @@ module.exports = function (app) {
     });
   });
 
+  app.get("/api/roomtops/?:roomId", function (req, res) {
+    db.song.findAll({ where: { roomId: req.params.roomId}, order: [["upvote", "DESC"], ["updatedAt", "ASC"]] }).then(function (songs) {
+      res.json(songs);
+    });
+  });
+
   app.post("/api/songs", function (req, res) {
     db.song.create({//consider changing this variable to Song instead of song
       deezerID: req.body.deezerID,

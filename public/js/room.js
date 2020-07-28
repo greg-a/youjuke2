@@ -1,14 +1,15 @@
 var playlistArr;
 var currentSong = "";
 var roomID = window.location.pathname.substring(6);
+var roomTops;
 
-$(document).ready(function() {
+$(document).ready(function () {
     // This file just does a GET request to figure out which user is logged in
     // and updates the HTML on the page
-    $.get("/api/user_data").then(function(data) {
-      $("#sign-out-button").text("Welcome " + data.email + " click to sign out");
+    $.get("/api/user_data").then(function (data) {
+        $("#sign-out-button").text("Welcome " + data.email + " click to sign out");
     });
-  });
+});
 
 $("#search-input").keyup(function (event) {
     //first remove the results from any previous search
@@ -108,7 +109,7 @@ $(document).on("click", ".search-result", function (event) {
     $.get("/api/allsongs/" + roomID).then(function (songs) {
         var totalSongs = songs;
         for (var i = 0; i < totalSongs.length; i++) {
-            if (totalSongs[i].deezerID == newSong.deezerID) {                
+            if (totalSongs[i].deezerID == newSong.deezerID) {
                 existingSong = true;
 
                 $.ajax({
@@ -125,13 +126,13 @@ $(document).on("click", ".search-result", function (event) {
             $.post("/api/songs/", newSong).then(function (song) {
                 // getPlaylist();
                 if (playlistArr.length === 0) {
-                location.reload();
+                    location.reload();
                 }
-                else{
+                else {
                     getPlaylist();
                 }
                 console.log("added new song: " + song)
-        });
+            });
     })
 });
 
@@ -242,21 +243,61 @@ function renderPlaylist() {
     }
 }
 
-$("#start-listening").on("click", function() {
+function roomTops() {
+    $.get("/api/roomtops/" + roomID).then(function (songs) {
+        roomTops = songs;
+        roomTopsDisplay();
+    });
+}
+
+function roomTopsDisplay() {
+    $("#rankings-list").empty();
+    var orderedList = $("<ol>");
+
+    for (var i = 0; i < roomTops.length; i++) {
+        var rankedTrack = $("<div>").addClass("queued-song ranked-song").attr("data-deezer", roomTops[i].deezerID);
+        var nameContainer = $("<div>").addClass("name-container");
+        var artistName = roomTops[i].artistName;
+        var songName = roomTops[i].songName;
+        var songNameP = $("<p>").text(songName).addClass("song-name");
+        var artistNameP = $("<p>").text(artistName).addClass("artist-name");
+        //artwork
+        var thumbnail = roomTops[i].thumbnail;
+        var thumbnailImg = $("<img>").addClass("album-pic");
+        thumbnailImg.attr("src", thumbnail);
+        //ranking
+        var songLikes = roomTops[i].upvote;
+
+        var songLikesP = $("<p>").html("&uarr;" + songLikes).addClass("song-likes");
+        //append song details together
+        nameContainer.append(songNameP, artistNameP);
+        rankedTrack.append("<li></li>");
+        rankedTrack.append(thumbnailImg);
+        rankedTrack.append(nameContainer);
+        rankedTrack.append(songLikesP);
+        //append song to list
+        orderedList.append(rankedTrack);
+
+        $("#rankings-list").append(orderedList);
+    }
+}
+
+$("#start-listening").on("click", function () {
     playPause();
 });
 
-$(document).on("click", ".upvote", function(event) {
+$(document).on("click", ".upvote", function (event) {
     console.log($(this))
     $.ajax({
         method: "PUT",
         url: "/api/songs/upvote/" + $(this).attr("data-id")
     })
-    .then(function(data) {
-        console.log("upvote submitted");
-        getPlaylist();
-    }) 
-        
+        .then(function (data) {
+            console.log("upvote submitted");
+            getPlaylist();
+            roomTops();
+        })
+
 });
 
 let playing = true;
