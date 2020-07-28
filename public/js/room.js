@@ -2,16 +2,16 @@ var playlistArr;
 var currentSong = "";
 var roomID = window.location.pathname.substring(6);
 
-// $(document).ready(function() {
-//     // This file just does a GET request to figure out which user is logged in
-//     // and updates the HTML on the page
-//     $.get("/api/user_data").then(function(err, data) {
-//         if (err) {
-//             console.log(err)
-//         }
-//       $("#sign-out-button").text("Welcome " + data.email + " click to sign out");
-//     });
-//   });
+$(document).ready(function() {
+    // This file just does a GET request to figure out which user is logged in
+    // and updates the HTML on the page
+    $.get("/api/user_data").then(function(err, data) {
+        if (err) {
+            console.log(err)
+        }
+      $("#sign-out-button").text("Welcome " + data.email + " click to sign out");
+    });
+  });
 
 $("#search-input").keyup(function (event) {
     //first remove the results from any previous search
@@ -283,5 +283,5 @@ $("#song").on("ended", (event) => {
     })
 });
 
-// $(document).ready(getPlaylist());
+$(document).ready(getPlaylist());
 
