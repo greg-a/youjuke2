@@ -169,18 +169,6 @@ $(document).on("click", ".ranked-song", function (event) {
                     })
             }
         }
-        // if (!existingSong) {
-        //     $.post("/api/songs/", newSong).then(function (song) {
-        //         // getPlaylist();
-        //         if (playlistArr.length === 0) {
-        //             location.reload();
-        //         }
-        //         else {
-        //             getPlaylist();
-        //         }
-        //         console.log("added new song: " + song)
-        //     });
-        // }
     })
 });
 
@@ -373,6 +361,14 @@ $("#song").on("ended", (event) => {
         currentSong = "";
         getPlaylist();
     })
+});
+
+//Volume control
+var volume = document.querySelector("#volume");
+var songFile = document.querySelector("#song");
+
+volume.addEventListener('change', function (e) {
+    songFile.volume = e.currentTarget.value / 100;
 });
 
 $(document).ready(getPlaylist());
