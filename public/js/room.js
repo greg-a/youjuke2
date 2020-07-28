@@ -122,7 +122,7 @@ $(document).on("click", ".search-result", function (event) {
                     })
             }
         }
-        if (!existingSong)
+        if (!existingSong) {//added this pair of curly braces that weren't here, lack of them wasn't causing issues though
             $.post("/api/songs/", newSong).then(function (song) {
                 // getPlaylist();
                 if (playlistArr.length === 0) {
@@ -133,6 +133,54 @@ $(document).on("click", ".search-result", function (event) {
                 }
                 console.log("added new song: " + song)
             });
+        }
+    })
+});
+
+// listens for click on song in the top/ranked songs tab
+$(document).on("click", ".ranked-song", function (event) {
+    var newSong = {
+        deezerID: $(this).attr("data-deezer"),
+        artistName: $(this).attr("data-artist"),
+        songName: $(this).attr("data-song"),
+        songURL: $(this).attr("data-preview"),
+        thumbnail: $(this).attr("data-thumbnail"),
+        roomID: roomID
+        // upvote: 0
+    };
+
+    // var deezerID = $(this).attr("data-deezer");
+    // console.log(deezerID);
+    var existingSong = false;
+
+    $.get("/api/allsongs/" + roomID).then(function (songs) {
+        var totalSongs = songs;
+        for (var i = 0; i < totalSongs.length; i++) {
+            if (totalSongs[i].deezerID == newSong.deezerID) {
+                existingSong = true;
+
+                $.ajax({
+                    method: "PUT",
+                    url: "/api/songs/added/" + totalSongs[i].id
+                })
+                    .then(function (song) {
+                        console.log("used existing song: " + song)
+                        getPlaylist();
+                    })
+            }
+        }
+        // if (!existingSong) {
+        //     $.post("/api/songs/", newSong).then(function (song) {
+        //         // getPlaylist();
+        //         if (playlistArr.length === 0) {
+        //             location.reload();
+        //         }
+        //         else {
+        //             getPlaylist();
+        //         }
+        //         console.log("added new song: " + song)
+        //     });
+        // }
     })
 });
 
