@@ -6,55 +6,51 @@ $(document).ready(function () {
     $("#myModal").modal('show');
   }
 
-  $(".room").on("click", function(event) {
-    localStorage.setItem("roomID", $(this).attr("data-room"))
-  })
-
   //signup process
   var signUpForm = $("form.signup");
-  var emailInput = $("input#email-signup");
-  var passwordInput = $("input#password-signup");
+  var emailSignup = $("input#email-signup");
+  var passwordSignup = $("input#password-signup");
 
   // When the signup button is clicked, we validate the email and password are not blank
   signUpForm.on("submit", function (event) {
     event.preventDefault();
     var userData = {
-      email: emailInput.val().trim(),
-      password: passwordInput.val().trim()
+      email: emailSignup.val().trim(),
+      password: passwordSignup.val().trim()
     };
     console.log(userData)
     if (!userData.email || !userData.password) {
-      $("#alert .msg").text("Tip: you can enter a fake email address ;)");
+      $("#alert .msg").text("Tip: you can enter a fake email address");
       $("#alert").fadeIn(500);
       return;
     }
     // If we have an email and password, run the signUpUser function
     signUpUser(userData.email, userData.password);
-    emailInput.val("");
-    passwordInput.val("");
+    emailSignup.val("");
+    passwordSignup.val("");
   });
 
   // login process
   var loginForm = $("form.login");
-  var emailInput = $("input#email-signin");
-  var passwordInput = $("input#password-signin");
+  var emailLogin = $("input#email-signin");
+  var passwordLogin = $("input#password-signin");
 
   // When the form is submitted, we validate there's an email and password entered
   loginForm.on("submit", function(event) {
     event.preventDefault();
     var userData = {
-      email: emailInput.val().trim(),
-      password: passwordInput.val().trim()
+      email: emailLogin.val().trim(),
+      password: passwordLogin.val().trim()
     };
-
+    console.log(userData)
     if (!userData.email || !userData.password) {
       return;
     }
 
     // If we have an email and password we run the loginUser function and clear the form
     loginUser(userData.email, userData.password);
-    emailInput.val("");
-    passwordInput.val("");
+    emailLogin.val("");
+    passwordLogin.val("");
   });
 
   // Does a post to the signup route. If successful, we are redirected to the members page
