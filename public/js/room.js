@@ -328,4 +328,5 @@ $("#song").on("ended", (event) => {
 });
 
 $(document).ready(getPlaylist());
+$(document).ready(roomTops());
 
