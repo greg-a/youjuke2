@@ -126,7 +126,13 @@ $(document).on("click", ".search-result", function (event) {
         }
         if (!existingSong)
             $.post("/api/songs/", newSong).then(function (song) {
-                getPlaylist();
+                // getPlaylist();
+                if (playlistArr.length === 0) {
+                location.reload();
+                }
+                else{
+                    getPlaylist();
+                }
                 console.log("added new song: " + song)
         });
     })
