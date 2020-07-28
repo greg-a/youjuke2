@@ -30,7 +30,7 @@
           <div class="room-list-container">
             {{#each rooms}}
             <a href="/room/{{this.dataValues.id}}" data-room={{this.dataValues.id}} class="room">
-              {{this.dataValues.name}}
+              {{this.dataValues.id}}. {{this.dataValues.name}}
             </a>
             <br>
             {{/each}}
