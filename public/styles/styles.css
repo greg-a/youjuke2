@@ -127,6 +127,10 @@ a {
   text-align: right;
 }
 
+#user-info {
+  text-align: center;
+}
+
 #left-panel, #right-panel {
   padding: 5px;
   height: 40em;
@@ -151,6 +155,11 @@ a {
 #graph {
   /* width: 30vw; */
   text-align: center;
+}
+
+#volume-sign-in {
+  display: flex;
+  justify-content: space-between;
 }
 
 #volume {
