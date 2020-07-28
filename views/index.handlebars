@@ -2,8 +2,12 @@
 
   <div class="col-xl-8 col-lg-8 col-md-8" id="left-panel">
     <div class="index-page-logo">
-      <img src="/styles/youjuke_logo_0.png" id="logo-img">
+      <img src="/styles/youjuke_logo_0.png" id="logo-img-index">
       <p id="slogan">Sick of algorithms telling you what to listen to?</p>
+      <div class="index-button-container">
+        <button type="button" class="btn btn-secondary sign-out-index" id="sign-out-button" data-toggle="modal"
+          data-target="#sign-in" data-whatever="@mdo">Sign In</button>
+      </div>
     </div>
     <ul class="nav nav-tabs" id="myTabLeft" role="tablist">
       <li class="nav-item">
@@ -27,10 +31,10 @@
 
           <div id="left-panel-title">
           </div>
-          <div class="queued-track-container">
+          <div class="room-list-container">
             {{#each rooms}}
             <a href="/room/{{this.dataValues.id}}" data-room={{this.dataValues.id}} class="room">
-              {{this.dataValues.name}}
+              {{this.dataValues.id}}. {{this.dataValues.name}}
             </a>
             <br>
             {{/each}}
@@ -81,7 +85,7 @@
             <li>Due to licensing, this version of Youjuke currently only plays previews and not complete
               songs. Full lyrics may also not be available for songs.
             </li>
-            <li>Like with radio, as you (or others in the room) listen to songs, they will be cycled out of the cue and 
+            <li>Like with radio, as you (or others in the room) listen to songs, they will be cycled out of the cue and
               the playlist will be updated live.</li>
             <li>Want to hear that song you just added more than any of
               the others already in the playlist? Give that song a thumbs up to vote up its position.
