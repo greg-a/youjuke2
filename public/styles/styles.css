@@ -242,6 +242,14 @@ a:hover {
   overflow: auto;
 }
 
+.room-list-container {
+  /* height: 36em;
+  overflow: auto;
+  padding-top: 5px; */
+  height: 25em;
+  overflow: auto;
+}
+
 .about-app-index {
   height: 25em;
   overflow: auto;
