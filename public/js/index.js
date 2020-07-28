@@ -6,10 +6,14 @@ $(document).ready(function () {
     $("#myModal").modal('show');
   }
 
+  $(".room").on("click", function(event) {
+    localStorage.setItem("roomID", $(this).attr("data-room"))
+  })
+
   //signup process
   var signUpForm = $("form.signup");
-  var emailInput = $("input.email-input");
-  var passwordInput = $("input.password-input");
+  var emailInput = $("input#email-signup");
+  var passwordInput = $("input#password-signup");
 
   // When the signup button is clicked, we validate the email and password are not blank
   signUpForm.on("submit", function (event) {
@@ -32,8 +36,8 @@ $(document).ready(function () {
 
   // login process
   var loginForm = $("form.login");
-  var emailInput = $("input.email-input");
-  var passwordInput = $("input.password-input");
+  var emailInput = $("input#email-signin");
+  var passwordInput = $("input#password-signin");
 
   // When the form is submitted, we validate there's an email and password entered
   loginForm.on("submit", function(event) {
@@ -111,4 +115,3 @@ $(document).ready(function () {
     )
   })
 });
-

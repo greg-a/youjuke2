@@ -9,7 +9,6 @@ module.exports = function (app) {
   // Otherwise the user will be sent an error
   app.post("/api/login", passport.authenticate("local"), function (req, res) {
     res.json(req.user);
-    console.log(req.user)
   });
 
   // Create a new user
@@ -21,8 +20,13 @@ module.exports = function (app) {
       res.redirect(307, "/api/login");
     }).catch(function (err) {
       res.status(401).json(err);
-      console.log(err)
     })
+  });
+
+  // Route for logging user out
+  app.get("/logout", function (req, res) {
+    req.logout();
+    res.redirect("/");
   });
 
   //need to figure out how to redirect user to new room immediately after posting
@@ -33,7 +37,6 @@ module.exports = function (app) {
     }).then(function (results) {
       var newPage = "/room/" + results.dataValues.id;
       res.send({ redirect: newPage })
-      console.log(req.body.name + " was added.")
     })
   })
 
@@ -64,7 +67,6 @@ module.exports = function (app) {
   });
 
   app.put("/api/songs/ended/?:songId", function (req, res) {
-    console.log("updating song: " + req.params.songId)
     db.song.update({ played: sequelize.literal("played + 1"), pending: false },
       {
         where: { id: req.params.songId }
@@ -74,12 +76,10 @@ module.exports = function (app) {
   });
 
   app.put("/api/songs/added/?:songId", function (req, res) {
-    console.log("added song: " + req.params.songId)
     db.song.findAll({
       attributes: [[sequelize.fn("max", sequelize.col("id")), 'maxID']],
       raw: true
     }).then(function (tempIndex) {
-      console.log("temp index: " + JSON.stringify(tempIndex))
       db.song.update({ pending: true, tempUpvote: 0, tempIndex: tempIndex.maxID },
         {
           where: { id: req.params.songId }
@@ -90,7 +90,6 @@ module.exports = function (app) {
   });
 
   app.put("/api/songs/upvote/?:songId", function (req, res) {
-    console.log("upvote added for song id: " + req.params.songId)
     db.song.update({ upvote: sequelize.literal("upvote + 1"), tempUpvote: sequelize.literal("tempUpvote + 1") },
       {
         where: { id: req.params.songId }
@@ -99,8 +98,7 @@ module.exports = function (app) {
       });
   });
 
-  app.get("/api/user_data", function(req, res) {
-    console.log(req)
+  app.get("/api/user_data", function (req, res) {
     if (!req.user) {
       // The user is not logged in, send back an empty object
       res.json({});
