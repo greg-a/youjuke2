@@ -194,13 +194,21 @@ a {
   color: rgb(182, 182, 182);
 }
 
-.search-result:hover, .queued-song:hover {
+.search-result:hover, .queued-song:hover, .listed-room:hover {
   cursor: pointer;
   /* background-color: rgb(95, 95, 95); */
   /* background: linear-gradient(90deg, rgba(87, 36, 94, 0.4), rgba(51, 112, 131, 0.4), rgba(87, 36, 94, 0.4)); */
   /* background: linear-gradient(90deg, rgb(34, 34, 34, 0.2), rgb(24, 24, 24, 0.2), rgb(34, 34, 34, 0.2)); */
   background: rgba(51, 112, 131, 0.6);
   transition: 0.5s;
+}
+
+.room:hover{
+  text-decoration: none;
+}
+
+.listed-room-name {
+  font-weight: bold;
 }
 
 a:hover {
