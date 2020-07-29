@@ -207,6 +207,10 @@ a {
   text-decoration: none;
 }
 
+.listed-room-name {
+  font-weight: bold;
+}
+
 a:hover {
   color: rgb(104, 199, 199);
 
