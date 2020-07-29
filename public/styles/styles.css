@@ -203,7 +203,7 @@ a {
   transition: 0.5s;
 }
 
-.room:hover{
+.room:hover, .logo-index-link:hover {
   text-decoration: none;
 }
 
