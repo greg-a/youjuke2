@@ -1,6 +1,6 @@
 <div class="mn-container d-flex justify-content-center">
 
-  <div class="col-xl-8 col-lg-8 col-md-8" id="left-panel">
+  <div class="col-xl-8 col-lg-8 col-md-8" id="index-panel">
     <div class="index-page-logo">
       <img src="/styles/youjuke_logo_0.png" id="logo-img-index">
       <p id="slogan">Sick of algorithms telling you what to listen to?</p>
@@ -27,11 +27,11 @@
 
     <div class="tab-content" id="myTabContentLeft">
       <div class="tab-pane fade show active" id="queue" role="tabpanel" aria-labelledby="queue-tab">
-        <div class="wrapper queued-track-wrapper">
+        <div class="wrapper room-list-wrapper">
 
           <div id="left-panel-title">
           </div>
-          <div class="room-list-container">
+          <div class="room-list-container container">
             {{#each rooms}}
             <div class="listed-room">
               <a href="/room/{{this.dataValues.id}}" data-room={{this.dataValues.id}} class="room row">
