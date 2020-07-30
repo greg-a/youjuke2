@@ -1,10 +1,11 @@
 var userName;
+var userID;
 
 $(document).ready(function () {
 
-  if (userName === undefined) {
-    $("#myModal").modal('show');
-  }
+  $(document).on("click", "#sign-out-button", function(event){
+    $("#myModal").modal('show')
+  })
 
   //signup process
   var signUpForm = $("form.signup");
@@ -44,6 +45,8 @@ $(document).ready(function () {
     };
     console.log(userData)
     if (!userData.email || !userData.password) {
+      $("#alert .msg").text("Username and password don't match.");
+      $("#alert").fadeIn(500);
       return;
     }
 
@@ -63,6 +66,7 @@ $(document).ready(function () {
       .then(function (data) {
         console.log(data)
         userName = data.email;
+        userID = data.id;
         $("#myModal").modal('hide');
         // If there's an error, handle it by throwing up a bootstrap alert
       })
@@ -90,13 +94,18 @@ $(document).ready(function () {
       $("#alert .msg").text("Email already exists. Please log in.");
       $("#alert").fadeIn(500);
     }
-    console.log(err.responseJSON.original.errno)
+    else {
+      $("#alert .msg").text("Either email or password don't match.");
+      $("#alert").fadeIn(500);
+    }
+    // console.log(err.responseJSON.original)
   }
 
   $("#submit-room").on("click", function (event) {
     var newRoom = {
       name: $("#new-room").val().trim(),
-      description: $("#room-desc").val().trim()
+      description: $("#room-desc").val().trim(),
+      userID: userID
     };
 
     $.ajax("/api/room", {

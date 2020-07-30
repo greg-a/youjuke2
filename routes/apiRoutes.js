@@ -33,7 +33,8 @@ module.exports = function (app) {
   app.post("/api/room", function (req, res) {
     db.room.create({
       name: req.body.name,
-      description: req.body.description
+      description: req.body.description,
+      roomID: req.body.roomID
     }).then(function (results) {
       var newPage = "/room/" + results.dataValues.id;
       res.send({ redirect: newPage })
