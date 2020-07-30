@@ -8,6 +8,14 @@ module.exports = function (sequelize, DataTypes) {
     });
 
     Room.associate = function (models) {
+        Room.belongsTo(models.user, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
+    }
+
+    Room.associate = function (models) {
         Room.hasMany(models.song, {
             onDelete: "cascade"
         });

@@ -2,13 +2,53 @@ var playlistArr;
 var currentSong = "";
 var roomID = window.location.pathname.substring(6);
 var roomTops;
+var userName;
+
+// set all chart font to white
+Chart.defaults.global.defaultFontColor = 'white';
+//radar chart variable
+var ctx = $('#myChart');
+// radar chart content
+var myRadarChart = new Chart(ctx, {
+    type: 'radar',
+    data: {
+        labels: ['Punk', 'Rap', 'Rock', 'Indie', 'Metal', 'Electronic', 'Pop', 'Country', 'R&B'],
+        datasets: [{
+            data: [20, 30, 60, 75, 10, 50, 60, 30],
+            borderColor: 'red',
+            backgroundColor: 'rgba(255, 10, 13, 0.1)',
+            label: 'Current Users'
+        }],
+    },
+    options: {
+        scale: {
+            angleLines: {
+                display: false
+            },
+            ticks: {
+                suggestedMin: 50,
+                suggestedMax: 100
+            },
+            gridLines: {
+                color: '#ffffff'
+            }
+        },
+        legend: {
+            labels: {
+                fontColor: 'white'
+            }
+        },
+        maintainAspectRatio: false,//ensures no overflow but properly scales to parent div dimensions
+        responsive: true,
+    }
+});
 
 $(document).ready(function () {
     // This file just does a GET request to figure out which user is logged in
     // and updates the HTML on the page
     $.get("/api/user_data").then(function (data) {
-        // $("#sign-out-button").text("Welcome " + data.email + " click to sign out");
         $("#sign-out-button").text("Sign Out");
+        userName = data.email;
     });
 });
 
