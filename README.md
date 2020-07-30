@@ -38,17 +38,20 @@ Let you be the algorithm to your listening party.
 * Javascript
 * jQuery
 * HTML5
+* Materialize
 * MySQL (Workbench, Node package)
 * Node.js
-* Sequelize
-* Materialize
 * Passport.js/bcrypt
+* Sequelize
 
 ### **Plans for future development**
             
 * Create in-depth recommendations based on group preferences
 * Access to more than just previews of songs
 * More supplemental content (artist information, tour dates, music videos/visuals)
+* User profiles
+* Search room by genre
+* Ability to make certain rooms private/control member list
 * Video sharing and karaoke version
 
 ### **More information**
