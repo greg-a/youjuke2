@@ -30,21 +30,19 @@ Let you be the algorithm to your listening party.
 ### **Technologies used**
 
 * APIs: Deezer
-* bcrypt
+* Bootstrap
 * Chart.js
 * CSS3
-* Bootstrap
 * Express
 * Express Handlebars
 * Javascript
 * jQuery
 * HTML5
-* MySQL Workbench
-* MySQL (Node package)
+* MySQL (Workbench, Node package)
 * Node.js
 * Sequelize
 * Materialize
-* Passport.js
+* Passport.js/bcrypt
 
 ### **Plans for future development**
             
