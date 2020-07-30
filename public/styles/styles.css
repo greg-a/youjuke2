@@ -131,7 +131,7 @@ a {
   text-align: center;
 }
 
-#left-panel, #right-panel {
+#left-panel, #right-panel, #index-panel {
   padding: 5px;
   height: 40em;
   /* border-radius: 10px; */
@@ -203,7 +203,7 @@ a {
   transition: 0.5s;
 }
 
-.room:hover{
+.room:hover, .logo-index-link:hover {
   text-decoration: none;
 }
 
@@ -645,7 +645,7 @@ input[type="range"] {
       padding-top: 0;
   }
 
-  #left-panel, #right-panel {
+  #left-panel, #right-panel, #index-panel {
       height: 100%;
   }
 }
