@@ -30,27 +30,28 @@ Let you be the algorithm to your listening party.
 ### **Technologies used**
 
 * APIs: Deezer
-* bcrypt
+* Bootstrap
 * Chart.js
 * CSS3
-* Bootstrap
 * Express
 * Express Handlebars
 * Javascript
 * jQuery
 * HTML5
-* MySQL Workbench
-* MySQL (Node package)
-* Node.js
-* Sequelize
 * Materialize
-* Passport.js
+* MySQL (Workbench, Node package)
+* Node.js
+* Passport.js/bcrypt
+* Sequelize
 
 ### **Plans for future development**
             
 * Create in-depth recommendations based on group preferences
 * Access to more than just previews of songs
 * More supplemental content (artist information, tour dates, music videos/visuals)
+* User profiles
+* Search room by genre
+* Ability to make certain rooms private/control member list
 * Video sharing and karaoke version
 
 ### **More information**
