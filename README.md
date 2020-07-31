@@ -2,6 +2,10 @@
 
 Deployed application: https://youjuke2.herokuapp.com/
 
+### **App Demo**
+
+![gif demo of Youjuke](./public/styles/youjukedemo.gif)
+
 ### **What is Youjuke?** 
 
 Youjuke is a music forum that allows groups of visitors to compile a shared playlist and listen to it together, live. Anyone can add a track to the playlist, but it is up to all users as a whole to decide the order of the playlist. Whether you want to share tracks with a larger audience, or want to break out into a virtual party with friends, Youjuke has you covered.
