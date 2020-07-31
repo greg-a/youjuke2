@@ -5,8 +5,10 @@
       <img src="/styles/youjuke_logo_0.png" id="logo-img-index">
       <p id="slogan">Sick of algorithms telling you what to listen to?</p>
       <div class="index-button-container">
-        <button type="button" class="btn btn-secondary sign-out-index" id="sign-out-button" data-toggle="modal"
+        <a href="#" id="signout-link">
+        <button type="button" class="btn btn-secondary sign-out-index" id="signin-button" data-toggle="modal"
           data-target="#sign-in" data-whatever="@mdo">Sign In</button>
+          </a>
       </div>
     </div>
     <ul class="nav nav-tabs" id="myTabLeft" role="tablist">
@@ -62,7 +64,7 @@
           </div>
           <textarea class="form-control" aria-label="With textarea" id="room-desc"></textarea>
         </div>
-        <button type="button" class="btn btn-primary" id="submit-room">Submit</button>
+        <button type="button" class="btn btn-primary mt-2" id="submit-room">Submit</button>
 
       </div>
 
@@ -141,7 +143,7 @@
               <div class="form-group">
                 <input type="password" class="form-control password-input" id="password-signup" placeholder="Password">
               </div>
-              <div style="display: none" id="alert" class="alert alert-danger" role="alert">
+              <div style="display: none" id="signup-alert" class="alert alert-danger" role="alert">
                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                 <span class="sr-only">Error:</span> <span class="msg"></span>
               </div>
@@ -161,7 +163,7 @@
               <div class="form-group">
                 <input type="password" class="form-control password-input2" id="password-signin" placeholder="Password">
               </div>
-              <div style="display: none" id="alert" class="alert alert-danger" role="alert">
+              <div style="display: none" id="signin-alert" class="alert alert-danger" role="alert">
                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                 <span class="sr-only">Error:</span> <span class="msg"></span>
               </div>

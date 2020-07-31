@@ -2,8 +2,12 @@ var userName;
 var userID;
 
 $(document).ready(function () {
+  if (userName == null) {
+    $("#signout-button").text("Sign In").attr("id", "signin-button");
+    $("#signout-link").attr("href", "#");
+  }
 
-  $(document).on("click", "#sign-out-button", function(event){
+  $(document).on("click", "#signin-button", function (event) {
     $("#myModal").modal('show')
   })
 
@@ -21,8 +25,8 @@ $(document).ready(function () {
     };
     console.log(userData)
     if (!userData.email || !userData.password) {
-      $("#alert .msg").text("Tip: you can enter a fake email address");
-      $("#alert").fadeIn(500);
+      $("#signup-alert .msg").text("Tip: you can enter a fake email address");
+      $("#signup-alert").fadeIn(500);
       return;
     }
     // If we have an email and password, run the signUpUser function
@@ -37,7 +41,7 @@ $(document).ready(function () {
   var passwordLogin = $("input#password-signin");
 
   // When the form is submitted, we validate there's an email and password entered
-  loginForm.on("submit", function(event) {
+  loginForm.on("submit", function (event) {
     event.preventDefault();
     var userData = {
       email: emailLogin.val().trim(),
@@ -45,8 +49,6 @@ $(document).ready(function () {
     };
     console.log(userData)
     if (!userData.email || !userData.password) {
-      $("#alert .msg").text("Username and password don't match.");
-      $("#alert").fadeIn(500);
       return;
     }
 
@@ -78,13 +80,18 @@ $(document).ready(function () {
       email: email,
       password: password
     })
-      .then(function(data) {
+      .then(function (data) {
         userName = data.email;
+        $("#signin-button").text("Sign Out").attr("id", "signout-button");
+        $("#signout-link").attr("href", "/logout");
         $("#myModal").modal('hide');
         // If there's an error, log the error
       })
-      .catch(function(err) {
+      .catch(function (err) {
         console.log(err);
+        $("#signin-alert .msg").text("Username or password don't match.");
+        $("#signin-alert").fadeIn(500);
+        return
       });
   }
 
