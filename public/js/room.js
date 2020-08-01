@@ -49,6 +49,7 @@ $(document).ready(function () {
     $.get("/api/user_data").then(function (data) {
         $("#sign-out-button").text("Sign Out");
         userName = data.email;
+        $("#welcome-user").text(userName)
     });
 });
 
