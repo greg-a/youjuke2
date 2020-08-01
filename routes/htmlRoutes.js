@@ -10,27 +10,14 @@ module.exports = function(app) {
     });
   });
 
-  // Load example page and pass in an example by id
-  app.get("/example/:id", function(req, res) {
-    db.Example.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.render("example", {
-        example: dbExample
-      });
-    });
-  });
-
   // Load page for room showing playlist
   app.get("/room/:id", function(req, res) {
     db.room.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
-      // console.log(dbExample);
       res.render("room", {
         room: dbExample.dataValues.name,
         description: dbExample.dataValues.description
       });
     });
-
-    //db.songs.findAll({ where: { roomid: req.params.id}}).then(function(dbExample) )
-
   });
 
   // Render 404 page for any unmatched routes
