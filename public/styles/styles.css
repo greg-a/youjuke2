@@ -664,4 +664,13 @@ input[type="range"] {
       padding-top: 0;
   }
 
+  .current-album {
+    height: 40px;
+    width: 40px;
+  }
+
+  #volume {
+    background-color: #2c3437;
+  }
+
 }
